@@ -9,6 +9,7 @@ export default function renderCityWeather(city) {
     renderCityName(city);
     renderCityTemperature();
     renderTemperatureExtremes();
+    renderMainWeather();
 }
 
 function createOutputContainer() {
@@ -17,11 +18,11 @@ function createOutputContainer() {
     body.appendChild(container);
 }
 
-function renderCityName(city) {
+function renderCityName() {
     const container = document.querySelector('.outputContainer')
     let cityName = document.createElement('div');
     cityName.classList.add('cityName');
-    cityName.textContent = city;
+    cityName.textContent = cityInfo.name;
     container.appendChild(cityName);
 }
 
@@ -62,4 +63,13 @@ function renderTemperatureExtremes() {
     maxTemp.textContent = `Today's High: ${maxTempValue}`;
     maxTemp.classList.add('maxTemp');
     extremeTempDiv.appendChild(maxTemp)
+}
+
+function renderMainWeather() {
+    const container = document.querySelector('.outputContainer');
+    let weatherDiv = document.createElement('div');
+    weatherDiv.classList.add('weatherDiv');
+    container.appendChild(weatherDiv);
+
+    weatherDiv.textContent = `Forecast: ${cityInfo.weather[0].main}`;
 }
